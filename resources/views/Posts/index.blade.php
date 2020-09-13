@@ -1,4 +1,8 @@
-@extends('adminlte::page')
+@if (Auth::check())
+    @extends('layouts.app')
+@else
+    @extends('adminlte::page')
+@endif
 
 @section('content')
     <div class="container">

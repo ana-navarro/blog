@@ -13,6 +13,7 @@
 
         {{-- Text --}}
         {{ $item['text'] }}
+        
 
         {{-- Label (optional) --}}
         @if(isset($item['label']))
