@@ -5,12 +5,15 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
+      @if (Auth::check())
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info text-white">
-            Bem-vindo <span class="text-uppercase">{{ Auth::user()->name }}</span> !
+            <p>Bem-vindo <span class="text-uppercase">{{ Auth::user()->name }}</span> !</p>
         </div>
       </div>
+          
+      @endif
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
