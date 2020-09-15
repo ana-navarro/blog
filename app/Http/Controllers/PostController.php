@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DataTables\PostDataTable;
 use App\Post;
+use Datatables;
+use DB;
 use App\Http\Requests\StorePost;
 
 class PostController extends Controller

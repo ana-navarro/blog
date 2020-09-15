@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Mail\MailtrapExample;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,12 @@ Route::resource('/posts', 'PostController');
 
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+
+Route::get('/send-mail', function () {
+
+    Mail::to('newuser@example.com')->send(new MailtrapExample()); 
+
+    return 'A message has been sent to Mailtrap!';
+
+});
