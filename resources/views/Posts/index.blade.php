@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Noticias</h1>
+    <h1 class="m-0 text-dark">Biblioteca de Posts</h1>
 @stop
 
 @section('content')
@@ -11,28 +11,63 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                @forelse ($posts as $post)
-                    <h3>
-                        <a href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a>
-                    </h3>
-
-                    {{ Str::limit( $value=$post->content, $limit=40, $end='...') }}
-                    <a href="{{ route('posts.show', ['post'=>$post->id]) }}">Ler Mais</a> 
-
-                    @if (Auth::check())                   
-                        <form method="POST" class="fm-inline" action="{{ route('posts.destroy', ['post' => $post->id]) }}">
-                            @csrf
-                            @method('DELETE')
-                            <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-primary">
-                                    Editar
-                                </a>   
-                            <input type="submit" value="Deletar" class="btn btn-primary"/>
-                        </form>
+                <table>
+                    <th width=30% class="border">
+                        <h4>Título</h4>
+                    </th>
+                    <th width=35% class="border">
+                        <h4>Conteúdo</h4>
+                    </th>
+                    <th width=20% class="border">
+                        <h4>Criado em</h4>
+                    </th>
+                    @if (Auth::check()) 
+                    <th width=10% class="border">
+                        <h4>Ações</h4>
+                    </th>
                     @endif
+                
+                @forelse ($posts as $post)
+                <tr>
+                    <td class="border">
+                        <p>
+                            <a href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a>
+                        </p>
+                    </td>
+
+                    <td class="border">
+                        {{ Str::limit( $value=$post->content, $limit=40, $end='...') }}
+                    </td>
+
+                    <td class="border">
+                        <a href="{{ route('posts.show', ['post' => $post->created_at]) }}">{{ $post->created_at }}</a>
+                    </td>
+
+                        @if (Auth::check())
+                        <td class="border ">       
+                            <form method="POST" class="fm-inline" action="{{ route('posts.destroy', ['post' => $post->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-success">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>    
+                            </form>
+                        </td>
+                        @endif
+                    
+                </tr> 
                 @empty
                     <p>Nenhum post publicado ainda</p>
                     <a href="{{ route('posts.create') }}"class="btn btn-primary">Adicionar um novo Post</a>
                 @endforelse
+            </table>
+            <div class="text-center">
+                <br>
+                {{ $posts->links() }}
+            </div>
             </div>
         </div>
     </div>

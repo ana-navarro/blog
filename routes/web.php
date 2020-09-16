@@ -26,4 +26,4 @@ Route::get('/send-mail', function () {
 
     return 'A message has been sent to Mailtrap!';
 
-});
+})->middleware('auth');

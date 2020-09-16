@@ -13,7 +13,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth');
     }
 
     /**
@@ -24,12 +24,9 @@ class PostController extends Controller
 
     public function index()
     {
-        return view(
-            'posts.index',
-            [
-                'posts' => Post::all(),
-            ]
-        );
+        $posts = Post::paginate(15);
+
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -109,6 +106,7 @@ class PostController extends Controller
     public function destroy(Request $request, $id)
     {
         $post = Post::findOrFail($id);
+        DB::table('posts')->where('id', $post)->delete();
         $post->delete();
 
         $request->session()->flash('status', 'Post deletado com sucesso!');

@@ -44,6 +44,13 @@
 
             {{-- Main Content --}}
             <div class="content">
+                
+                @if(session()->has('status'))
+                <p style="color: green">
+                    {{ session()->get('status') }}
+                </p>
+                @endiF
+
                 <div class="{{ config('adminlte.classes_content') ?: $def_container_class }}">
                     @yield('content')
                 </div>
