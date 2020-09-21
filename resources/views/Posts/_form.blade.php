@@ -6,7 +6,7 @@
 
 <div class="form-group">
     <label>Conteudo</label>
-    <textarea name="content" id="content" cols="100" rows="10" class="form-control" value="{{ old('content', $post->content ?? null) }}"></textarea>
+    <input type="text" name="content" class="form-control" value="{{ old('content', $post->content ?? null) }}"/>
 </div>
 
 @if($errors->any())
