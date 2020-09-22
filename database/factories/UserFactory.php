@@ -28,12 +28,4 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\Post::class, function (Faker $faker) {
-    static $password;
-
-    return [
-        'title' => Str::random(5),
-        'content' => Str::random(10),
-    ];
-});
 

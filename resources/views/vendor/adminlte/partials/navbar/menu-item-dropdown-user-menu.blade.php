@@ -35,7 +35,9 @@
             <li class="user-header {{ config('adminlte.usermenu_header_class', 'bg-primary') }}
                 @if(!config('adminlte.usermenu_image')) h-auto @endif">
                 @if(config('adminlte.usermenu_image'))
-                    <img src="{{ Auth::user()->adminlte_image() }}" class="img-circle elevation-2" alt="{{ Auth::user()->name }}">
+                    <img src="{{ Auth::user()->adminlte_image() }}"
+                         class="img-circle elevation-2"
+                         alt="{{ Auth::user()->name }}">
                 @endif
                 <p class="@if(!config('adminlte.usermenu_image')) mt-0 @endif">
                     {{ Auth::user()->name }}
@@ -66,12 +68,6 @@
                     {{ __('adminlte::menu.profile') }}
                 </a>
             @endif
-            <a class="dropdown-item" href="{{ route('posts.create') }}">
-                Adicionar um novo Post
-            </a>
-            <a class="dropdown-item" href="{{ route('posts.index') }}">
-                Biblioteca de Posts
-            </a>
             <a class="btn btn-default btn-flat float-right @if(!$profile_url) btn-block @endif"
                href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fa fa-fw fa-power-off"></i>

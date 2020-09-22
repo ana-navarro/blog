@@ -15,7 +15,7 @@
     {{-- Title --}}
     <title>
         @yield('title_prefix', config('adminlte.title_prefix', ''))
-        @yield('title', config('adminlte.title', 'PlayerXP'))
+        @yield('title', config('adminlte.title', 'AdminLTE 3'))
         @yield('title_postfix', config('adminlte.title_postfix', ''))
     </title>
 
@@ -32,10 +32,6 @@
 
         <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-        <link rel="stylesheet" href="{{asset('css/app.css')}}" />
-        <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}" />
-        <link rel="stylesheet" href="{{asset('css/skins/_all-skins.min.css')}}" />
-        <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.min.css')}}" />   
     @else
         <link rel="stylesheet" href="{{ mix(config('adminlte.laravel_mix_css_path', 'css/app.css')) }}">
     @endif
@@ -66,26 +62,6 @@
         <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
     @endif
 
-    {{-- Datatables --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-    error=false
-    function validate()
-    {
-    if(document.userForm.name.value !='' && document.userForm.email.value !='' )
-    document.userForm.btnsave.disabled=false
-    else
-    document.userForm.btnsave.disabled=true
-    }
-    </script>
-
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
@@ -108,9 +84,6 @@
     @endif
 
     {{-- Custom Scripts --}}
-    <script src="{{ asset('js/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/adminlte.min.js') }}"></script>
     @yield('adminlte_js')
 
 </body>
