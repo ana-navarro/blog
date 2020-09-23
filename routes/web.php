@@ -14,6 +14,8 @@ use App\Mail\MailtrapExample;
 |
 */
 
+Route::redirect('/', '/login');
+
 Route::resource('/posts', 'PostController');
 
 Auth::routes();

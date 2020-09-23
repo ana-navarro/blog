@@ -242,30 +242,29 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Usuário',
             'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'submenu'=> [
+                [
+                    'text' => 'Perfil',
+                    'url' =>'/profile',
+                    'icon' => 'fas fa-user-circle',
+                ],
+                [
+                    'text' => 'Trocar a Senha',
+                    'url' => '/change-password',
+                    'icon' => 'fas fa-key',
+                ],
+            ]
         ],
         [
             'text'    => 'Posts',
-            'icon'    => 'fas fa-th',
+            'icon'    => 'fas fa-newspaper',
             'submenu' => [
                 [
                     'text'    => 'Biblioteca de Posts',
                     'url'     => '/posts',
+                    'icon' => 'fas fa-th',
                 ],
                 [
                     'text' => 'Adicionar um novo Post',

@@ -3,7 +3,7 @@
 @section('title', 'Blog')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Painel de Controle</h1>
+    <h1 class="m-0 text-dark">Perfil</h1>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <p class="mb-0">Bem-vindo ao Painel de Controle de BLOG!</p>
+                    <p class="mb-0"></p>
                 </div>
             </div>
         </div>
