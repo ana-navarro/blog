@@ -14,18 +14,21 @@
             <div class="card-body">
                 <div id="post-table">
                     <table>
-                        <th width=30% class="border">
-                            <h4>Título</h4>
+                        <th width=20% class="border text-center">
+                            <h5>Título</h5>
                         </th>
-                        <th width=35% class="border">
-                            <h4>Conteúdo</h4>
+                        <th width=30% class="border text-center">
+                            <h5>Conteúdo</h5>
                         </th>
-                        <th width=20% class="border">
-                            <h4>Criado em</h4>
+                        <th width=10% class="border text-center">
+                            <h5>Criado em</h5>
+                        </th>
+                        <th width=10% class="border text-center">
+                            <h5>Comentários</h5>
                         </th>
                         @if (Auth::check()) 
-                        <th width=10% class="border">
-                            <h4>Ações</h4>
+                        <th width=10% class="border text-center">
+                            <h5>Ações</h5>
                         </th>
                         @endif
                     
@@ -38,15 +41,22 @@
                             </td>
         
                             <td class="border">
-                                {{ Str::limit( $value=$post->content, $limit=40, $end='...') }}
+                                {{ Str::limit( $value=$post->content, $limit=15, $end='...') }}
                             </td>
         
-                            <td class="border">
+                            <td class="border text-center">
                                 <a href="{{ route('posts.show', ['post' => $post->created_at]) }}">{{ $post->created_at }}</a>
+                            </td>
+                            <td class="border text-center">
+                                @if($post->comments_count)
+                                    <p>{{ $post->comments_count }}</p>
+                                @else
+                                    <p>0</p>
+                                @endif
                             </td>
         
                                 @if (Auth::check())
-                                <td class="border ">       
+                                <td class="border text-center">       
                                     <form method="POST" class="fm-inline" action="{{ route('posts.destroy', ['post' => $post->id]) }}">
                                         @csrf
                                         @method('DELETE')

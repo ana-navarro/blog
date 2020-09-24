@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use DB;
 use App\Http\Requests\StorePost;
+use App\Comment;
 
 class PostController extends Controller
 {
@@ -22,7 +23,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::latest('created_at')->paginate(15);
+        $posts = Post::latest('created_at')->withCount('comments')->paginate(15);
 
         return view('posts.index', ['posts' => $posts]);
     }
@@ -61,7 +62,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts.show', ['post' => Post::findOrFail($id)]);
+        return view('posts.show', ['post' => Post::with('comments')->findOrFail($id)]);
     }
 
     /**

@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Blog',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>Blog</b>',
+    'logo_img' => 'vendor/adminlte/dist/img/unimontes.png',
+    'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Unimontes',
 
     /*
     |--------------------------------------------------------------------------
@@ -101,12 +101,12 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'bg-gradient-dark',
     'classes_auth_header' => '',
-    'classes_auth_body' => '',
-    'classes_auth_footer' => '',
-    'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_body' => 'bg-gradient-dark',
+    'classes_auth_footer' => 'text-center',
+    'classes_auth_icon' => 'text-light',
+    'classes_auth_btn' => 'btn-flat btn-light',
 
     /*
     |--------------------------------------------------------------------------
@@ -254,6 +254,16 @@ return [
                     'text' => 'Trocar a Senha',
                     'url' => '/change-password',
                     'icon' => 'fas fa-key',
+                ],
+                [
+                    'text' => 'Adicionar Novo Usuário',
+                    'url' => '/register',
+                    'icon' => 'fas fa-user-plus',
+                ],
+                [
+                    'text' => 'Lista de Usuários',
+                    'url' => '/users',
+                    'icon' => 'fas fa-users',
                 ],
             ]
         ],

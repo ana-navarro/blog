@@ -11,7 +11,16 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <p class="mb-0"></p>
+                    <p>{{$user->name}}</p>
+                    <p>{{$user->email}}</p>
+                    @if (Auth::check())      
+                        <form method="POST" action="{{ route('posts.update', ['post' => $post->id]) }}">
+                            {{ method_field('DELETE')}}        
+                            {{csrf_field()}}
+                            <a href="{{route('posts.edit', ['post'=>$post->id])}}">Editar</a>
+                            <input type="submit" class="btn btn-link" value="Delete" />
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
