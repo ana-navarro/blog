@@ -18,7 +18,9 @@
     @php( $password_reset_url = $password_reset_url ? url($password_reset_url) : '' )
 @endif
 
-@section('auth_header', __('adminlte::adminlte.login_message'))
+@section('auth_header')
+    Entrar
+@endsection('auth_header')
 
 @section('auth_body')
     <form action="{{ $login_url }}" method="post">
@@ -59,9 +61,15 @@
         {{-- Login field --}}
         <div class="row">
             <div class="col-7">
-                <div class="icheck-primary">
-                    <input type="checkbox" name="remember" id="remember">
-                    <label for="remember">{{ __('adminlte::adminlte.remember_me') }}</label>
+                <div class="form-group">
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="remember"
+                        value="{{ old('remember') ? 'checked': '' }}">
+
+                    <label class="form-check-label" for="remember">
+                        Lembrar-me
+                    </label>
+                    </div>
                 </div>
             </div>
             <div class="col-5">
