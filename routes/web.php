@@ -16,7 +16,7 @@ use App\Mail\MailtrapExample;
 
 Route::redirect('/', '/login');
 
-Route::resource('/posts', 'PostController');
+Route::resource('/posts', 'PostController')->middleware('auth');
 
 Auth::routes();
 
@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::get('/send-mail', function () {
 
-    Mail::to('newuser@example.com')->send(new MailtrapExample()); 
+    Mail::to('newuser@example.com')->send(new MailtrapExample());
 
     return 'A message has been sent to Mailtrap!';
 
