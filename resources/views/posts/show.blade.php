@@ -4,7 +4,7 @@
 
 @section('content_header')
     <h1 class="m-0 text-dark">{{ $post->title }}</h1>
-    <p> Criado em  {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</p>
+    <p> Criado {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</p>
 @stop
 
 @section('content')
@@ -13,7 +13,6 @@
             <div class="card">
                 <div class="card-body">
                     <p>{{$post->content}}</p>
-                        <p>{{\Carbon\Carbon::parse($post->created_at)->format('d M, Y')}}</p>
                         @if (Auth::check())
                             <form method="POST" action="{{ route('posts.update', ['post' => $post->id]) }}">
                                 {{ method_field('DELETE')}}

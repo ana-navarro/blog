@@ -45,7 +45,7 @@
                             </td>
 
                             <td class="border text-center">
-                                <a href="{{ route('posts.show', ['post' => $post->created_at]) }}">{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</a>
+                                {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}
                             </td>
                             <td class="border text-center">
                                 @if($post->comments_count)
