@@ -32,7 +32,7 @@
             <div class="card-body">
                 <p>{{ $comment->content }}</p>
                 <p class="text-muted">
-                    Adicionado {{\Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+                    Adicionado em {{\Carbon\Carbon::parse($comment->created_at)->format('d/m/y')}}
                 </p>
             </div>
         </div>
