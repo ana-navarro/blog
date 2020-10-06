@@ -4,11 +4,10 @@
 
 @section('content_header')
     <h1 class="m-0 text-dark">{{ $post->title }}</h1>
-    <p> Criado {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</p>
+    <p class="text-muted"> Criado {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</p>
 @stop
 
 @section('content')
-    <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -23,27 +22,22 @@
                         @endif
                 </div>
             </div>
-        </div>
     </div>
 
     <h5>Comentários</h5>
 
     @forelse($post->comments as $comment)
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <p>
-                        {{ $comment->content }}
-                    </p>
-                    <p class="text-muted">
-                        Adicionado em {{ $comment->created_at}}
-                    </p>
-                    @empty
-                        <p>Nenhum comentário ainda!</p>
-                    @endforelse
-                </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <p>{{ $comment->content }}</p>
+                <p class="text-muted">
+                    Adicionado {{\Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+                </p>
             </div>
         </div>
     </div>
+    @empty
+        <p>Nenhum comentário ainda!</p>
+    @endforelse
 @stop

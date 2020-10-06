@@ -23,9 +23,6 @@
                         <th width=10% class="border text-center">
                             <h5>Criado em</h5>
                         </th>
-                        <th width=10% class="border text-center">
-                            <h5>Comentários</h5>
-                        </th>
                         @if (Auth::check())
                         <th width=10% class="border text-center">
                             <h5>Ações</h5>
@@ -46,13 +43,6 @@
 
                             <td class="border text-center">
                                 {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}
-                            </td>
-                            <td class="border text-center">
-                                @if($post->comments_count)
-                                    <p>{{ $post->comments_count }}</p>
-                                @else
-                                    <p>0</p>
-                                @endif
                             </td>
 
                                 @if (Auth::check())
