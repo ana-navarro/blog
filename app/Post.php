@@ -13,12 +13,8 @@ class Post extends Model
 
     public function getCreatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d-m-Y');
-    }
-
-    public function getUpdatedAtAttribute($date)
-    {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d-m-Y');
+        Carbon::setLocale('pt-BR');
+        return Carbon::parse($date)->format('d M, Y');
     }
 
     public function comments(){

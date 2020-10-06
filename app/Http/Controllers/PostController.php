@@ -7,6 +7,7 @@ use App\Post;
 use DB;
 use App\Http\Requests\StorePost;
 use App\Comment;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -23,6 +24,7 @@ class PostController extends Controller
 
     public function index()
     {
+        //$posts = Post::latest('created_at')->withCount('comments')->paginate(15);
         $posts = Post::latest('created_at')->withCount('comments')->paginate(15);
 
         return view('posts.index', ['posts' => $posts]);
@@ -50,7 +52,7 @@ class PostController extends Controller
         $blogPost = Post::create($validatedData);
 
         $request->session()->flash('status', 'Post criado com sucesso!');
-        
+
         return redirect()->route('posts.show', ['post' => $blogPost->id]);
     }
 

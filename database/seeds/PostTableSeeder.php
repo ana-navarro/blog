@@ -11,6 +11,7 @@ class PostTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Post::class, 25)->create();
+        $postCount = (int)$this->command->ask('Quantos posts deseja criar aleatoriamente para teste? PS.:só aceita números', 25);
+        factory(App\Post::class, $postCount)->create();
     }
 }

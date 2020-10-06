@@ -26,12 +26,12 @@
                         <th width=10% class="border text-center">
                             <h5>Comentários</h5>
                         </th>
-                        @if (Auth::check()) 
+                        @if (Auth::check())
                         <th width=10% class="border text-center">
                             <h5>Ações</h5>
                         </th>
                         @endif
-                    
+
                         @forelse ($posts as $post)
                         <tr>
                             <td class="border">
@@ -39,13 +39,13 @@
                                     <a href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a>
                                 </p>
                             </td>
-        
+
                             <td class="border">
                                 {{ Str::limit( $value=$post->content, $limit=15, $end='...') }}
                             </td>
-        
+
                             <td class="border text-center">
-                                <a href="{{ route('posts.show', ['post' => $post->created_at]) }}">{{ $post->created_at }}</a>
+                                <a href="{{ route('posts.show', ['post' => $post->created_at]) }}">{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</a>
                             </td>
                             <td class="border text-center">
                                 @if($post->comments_count)
@@ -54,9 +54,9 @@
                                     <p>0</p>
                                 @endif
                             </td>
-        
+
                                 @if (Auth::check())
-                                <td class="border text-center">       
+                                <td class="border text-center">
                                     <form method="POST" class="fm-inline" action="{{ route('posts.destroy', ['post' => $post->id]) }}">
                                         @csrf
                                         @method('DELETE')
@@ -65,12 +65,12 @@
                                         </a>
                                         <button type="submit" class="btn btn-danger">
                                             <i class="fas fa-trash-alt"></i>
-                                        </button>    
+                                        </button>
                                     </form>
                                 </td>
                                 @endif
-                            
-                        </tr> 
+
+                        </tr>
                         @empty
                             <p>Nenhum post publicado ainda</p>
                         @endforelse

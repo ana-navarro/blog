@@ -15,7 +15,7 @@
         "jeroennoten/laravel-adminlte": "^3.4",
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
-        "nesbot/carbon": "^2.40",
+        "nesbot/carbon": "^2.41",
         "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-oracle": "^9.11"
     },

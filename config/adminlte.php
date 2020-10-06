@@ -15,8 +15,8 @@ return [
     */
 
     'title' => 'Blog',
-    'title_prefix' => '',
-    'title_postfix' => '',
+    'title_prefix' => 'Blog',
+    'title_postfix' => 'Blog',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,11 +45,11 @@ return [
     |
     */
 
-    'logo' => '<b>Blog</b>',
+    'logo' => '',
     'logo_img' => 'vendor/adminlte/dist/img/unimontes.png',
     'logo_img_class' => 'brand-image',
-    'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
+    'logo_img_xl' => true,
+    'logo_img_xl_class' => 'brand-image-xl',
     'logo_img_alt' => 'Unimontes',
 
     /*
@@ -65,7 +65,7 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
@@ -101,11 +101,11 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
-    'classes_auth_header' => '',
+    'classes_auth_card' => 'card-outline',
+    'classes_auth_header' => 'bg-gradient-primary',
     'classes_auth_body' => '',
-    'classes_auth_footer' => '',
-    'classes_auth_icon' => '',
+    'classes_auth_footer' => 'text-center',
+    'classes_auth_icon' => 'fa-lg text-primary',
     'classes_auth_btn' => 'btn-flat btn-primary',
 
     /*
