@@ -10,6 +10,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+
+    public function user(){
+        return $this->hasMany(App\Post::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -41,5 +46,5 @@ class User extends Authenticatable
     {
         return 'profile/username';
     }
-    
+
 }

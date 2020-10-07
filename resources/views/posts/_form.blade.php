@@ -6,7 +6,9 @@
 
 <div class="form-group">
     <label>Conteudo</label>
-    <input type="text" name="content" class="form-control" value="{{ old('content', $post->content ?? null) }}"/>
+    <p>
+        <input type="text" name="content" class="form-control" value="{{ old('content', $post->content ?? null) }}"/>
+    </p>
 </div>
 
 @if($errors->any())

@@ -11,7 +11,11 @@ class PostTableSeeder extends Seeder
      */
     public function run()
     {
-        $postCount = (int)$this->command->ask('Quantos posts deseja criar aleatoriamente para teste? PS.:só aceita números', 25);
-        factory(App\Post::class, $postCount)->create();
+        $users = App\User::all();
+
+        factory(App\Post::class, 50)->make()->each(function($post) use ($users) {
+            $post->user_id = $users->random()->id;
+            $post->save();
+        });
     }
 }

@@ -4,7 +4,7 @@
 
 @section('content_header')
     <h1 class="col-12 text-dark">{{ $post->title }}</h1>
-    <p class="col-12 text-muted"> Criado {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</p>
+    <p class="col-12 text-muted"> Criado {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}} por {{ $post->user->name }}</p>
 @stop
 
 @section('content')
