@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 class Post extends Model
@@ -10,6 +11,8 @@ class Post extends Model
     protected $table = 'posts';
     protected $fillabe=['title', 'content'];
     protected $guarded = array();
+
+    use SoftDeletes;
 
     public function getCreatedAtAttribute($date)
     {

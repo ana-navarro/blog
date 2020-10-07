@@ -3,8 +3,8 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ $post->title }}</h1>
-    <p class="text-muted"> Criado {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</p>
+    <h1 class="col-12 text-dark">{{ $post->title }}</h1>
+    <p class="col-12 text-muted"> Criado {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</p>
 @stop
 
 @section('content')

@@ -21,7 +21,7 @@
                             <h5>Conteúdo</h5>
                         </th>
                         <th width=10% class="border text-center">
-                            <h5>Criado em</h5>
+                            <h5>Data de Criação</h5>
                         </th>
                         @if (Auth::check())
                         <th width=10% class="border text-center">
