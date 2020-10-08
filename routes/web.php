@@ -22,11 +22,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
-Route::get('/send-mail', function () {
-
-    Mail::to('newuser@example.com')->send(new MailtrapExample());
-
-    return 'A message has been sent to Mailtrap!';
-
-
-})->middleware('auth');
+Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::get('/secret', 'HomeController@secret')->name('secret')->middleware('can:home.secret');

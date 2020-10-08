@@ -28,4 +28,13 @@ class HomeController extends Controller
     public function showChangePasswordForm(){
         return view('auth.changepassword');
     }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function secret(){
+        return view('secret');
+    }
 }

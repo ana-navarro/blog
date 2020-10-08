@@ -53,20 +53,26 @@
                                 {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}
                             </td>
 
-                                @if (Auth::check())
                                 <td class="border text-center">
                                     <form method="POST" class="fm-inline" action="{{ route('posts.destroy', ['post' => $post->id]) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-success">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
+                                        @can('update', $post)
+                                            <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-success">
+                                                <i class="far fa-edit"></i>
+                                            </a>
+                                        @endcan
+                                        @can('delete', $post)
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        @endcan
+
+                                        @cannot(['update', 'delete'], $post)
+                                            <p>Você não tem permissão!</p>
+                                        @endcannot
                                     </form>
                                 </td>
-                                @endif
 
                         </tr>
                         @empty
