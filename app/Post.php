@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 class Post extends Model
 {
     protected $table = 'posts';
-    protected $fillabe=['title', 'content'];
+    protected $fillabe=['title', 'content', 'user_id'];
     protected $guarded = array();
 
     use SoftDeletes;

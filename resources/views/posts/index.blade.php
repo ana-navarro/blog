@@ -20,6 +20,10 @@
                         <th width=30% class="border text-center">
                             <h5>Conteúdo</h5>
                         </th>
+
+                        <th width=15% class="border text-center">
+                            <h5>Autor</h5>
+                        </th>
                         <th width=10% class="border text-center">
                             <h5>Data de Criação</h5>
                         </th>
@@ -39,6 +43,10 @@
 
                             <td class="border">
                                 {{ Str::limit( $value=$post->content, $limit=15, $end='...') }}
+                            </td>
+
+                            <td class="border text-center">
+                                {{ $post->user->name }}
                             </td>
 
                             <td class="border text-center">

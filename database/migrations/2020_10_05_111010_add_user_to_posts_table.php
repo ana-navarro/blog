@@ -15,7 +15,7 @@ class AddUserToPostsTable extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
 
-            if (env('DB_CONNECTION') === 'sqlite_testing') {
+            if (env('DB_CONNECTION') !== 'sqlite_testing') {
                 $table->unsignedInteger('user_id')->default(0);
             } else {
                 $table->unsignedInteger('user_id');

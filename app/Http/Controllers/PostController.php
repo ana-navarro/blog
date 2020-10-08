@@ -7,7 +7,8 @@ use App\Post;
 use DB;
 use App\Http\Requests\StorePost;
 use App\Comment;
-use Carbon\Carbon;
+use DataTables;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -22,11 +23,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Request $request)
     {
-        //$posts = Post::latest('created_at')->withCount('comments')->paginate(15);
         $posts = Post::latest('created_at')->withCount('comments')->paginate(15);
-
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -37,6 +36,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        //$this->authorize('create');
         return view('posts.create');
     }
 
@@ -49,9 +49,8 @@ class PostController extends Controller
     public function store(StorePost $request)
     {
         $validatedData = $request->validated();
+        $validatedData['user_id'] = $request->user()->id;
         $blogPost = Post::create($validatedData);
-
-        $request->session()->flash('status', 'Post criado com sucesso!');
 
         return redirect()->route('posts.show', ['post' => $blogPost->id]);
     }
@@ -76,6 +75,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
+
+        $this->authorize($post);
+
         return view('posts.edit', ['post' => $post]);
     }
 
@@ -89,11 +91,13 @@ class PostController extends Controller
     public function update(StorePost $request, $id)
     {
         $post = Post::findOrFail($id);
+
+        $this->authorize($post);
+
         $validatedData = $request->validated();
 
         $post->fill($validatedData);
         $post->save();
-        $request->session()->flash('status', 'Post atualizado com sucesso!');
 
         return redirect()->route('posts.show', ['post' => $post->id]);
     }
@@ -107,10 +111,11 @@ class PostController extends Controller
     public function destroy(Request $request, $id)
     {
         $post = Post::findOrFail($id);
+
+        $this->authorize($post);
+
         DB::table('posts')->where('id', $post)->delete();
         $post->delete();
-
-        $request->session()->flash('status', 'Post deletado com sucesso!');
 
         return redirect()->route('posts.index');
     }
