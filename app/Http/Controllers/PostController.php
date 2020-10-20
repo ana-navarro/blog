@@ -25,7 +25,7 @@ class PostController extends Controller
 
     public function index(Request $request)
     {
-        $posts = Post::withCount('comments')->latest()->paginate(15);
+        $posts = Post::withCount('comments')->paginate(20);
         return view('posts.index', ['posts' => $posts]);
     }
 
