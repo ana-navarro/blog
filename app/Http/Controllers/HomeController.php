@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home', [
+            'mostCommented' => Post::mostCommented()->take(5)->get(),
+            'mostActive' => User::withMostPosts()->take(5)->get(),
+        ]);
     }
     public function showChangePasswordForm(){
         return view('auth.changepassword');

@@ -5,6 +5,8 @@ namespace App;
 use App\Scope\LatestScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 
 class Post extends Model
@@ -22,11 +24,15 @@ class Post extends Model
     }
 
     public function comments(){
-        return $this->hasMany('App\Comment', 'post_id');
+        return $this->hasMany('App\Comment', 'post_id')->latest();
     }
 
     public function user(){
         return $this->belongsTo('App\User');
+    }
+
+    public function scopeMostCommented(Builder $query){
+        return $query->withCount('comments')->orderby('comments_count', 'desc');
     }
 
     public static function boot(){

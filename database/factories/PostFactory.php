@@ -13,5 +13,6 @@ $factory->define(Post::class, function (Faker $faker) {
     return [
         'title' => Str::random(5),
         'content' => Str::random(10),
+        'created_at' => $faker->dateTimeBetween('-3 months'),
     ];
 });
