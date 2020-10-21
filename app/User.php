@@ -13,7 +13,7 @@ class User extends Authenticatable
     use Notifiable;
 
 
-    public function user(){
+    public function posts(){
         return $this->hasMany(Post::class);
     }
 

@@ -9,7 +9,7 @@
 @section('content')
     <div class="row">
         <div class="col-4">
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-2">Lista dos Posts Mais Comentados</h5>
                 </div>
@@ -24,13 +24,13 @@
                 </ul>
             </div>
         </div>
-        <div class="col-8">
-            <div class="card" style="width: 18rem;">
+        <div class="col-4">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-2">Lista dos Usuários Mais Ativos</h5>
                 </div>
                 <ul class="list-group list-group-flush">
-                    @foreach ($mostActive as $post)
+                    @foreach ($mostActive as $user)
                         <li class="list-group-item">
                             {{ $user->name }}
                         </li>

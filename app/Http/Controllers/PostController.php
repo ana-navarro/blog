@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use DB;
+use App\User;
 use App\Http\Requests\StorePost;
-use App\Comment;
-use DataTables;
-use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -25,8 +23,11 @@ class PostController extends Controller
 
     public function index(Request $request)
     {
-        $posts = Post::withCount('comments')->paginate(20);
-        return view('posts.index', ['posts' => $posts]);
+        return view('posts.index', [
+            'posts' => Post::withCount('comments')->paginate(20),
+            'mostCommented' => Post::mostCommented()->take(20)->get(),
+            //'mostActive' => User::WithMostPosts()->take(5)->get()
+        ]);
     }
 
     /**

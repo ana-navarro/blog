@@ -3,8 +3,13 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Biblioteca de Posts</h1>
-    <a href="{{ route('posts.create') }}"class="btn btn-primary my-2">Adicionar um novo Post</a>
+<div class="row">
+    <div class="col-12">
+        <h1 class="m-0 text-dark">Biblioteca de Posts</h1>
+        <a href="{{ route('posts.create') }}"class="btn btn-primary my-2">Adicionar um novo Post</a>
+    </div>
+
+</div>
 @stop
 
 @section('content')
@@ -87,5 +92,6 @@
             </div>
         </div>
     </div>
+
 </div>
 @endsection
