@@ -2,10 +2,10 @@
 
 namespace App;
 
+use App\Scope\DeleteAdminScope as ScopeDeleteAdminScope;
 use App\Scope\LatestScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 
@@ -36,9 +36,9 @@ class Post extends Model
     }
 
     public static function boot(){
-        parent::boot();
+        static::addGlobalScope(new ScopeDeleteAdminScope);
 
-        static::addGlobalScope(new LatestScope);
+        parent::boot();
 
         static::deleting(function (Post $post){
             $post->comments()->delete();

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use DB;
-use App\User;
 use App\Http\Requests\StorePost;
 
 class PostController extends Controller
@@ -24,9 +23,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
         return view('posts.index', [
-            'posts' => Post::withCount('comments')->paginate(20),
-            'mostCommented' => Post::mostCommented()->take(20)->get(),
-            //'mostActive' => User::WithMostPosts()->take(5)->get()
+            'posts' => Post::latest()->paginate(20)
         ]);
     }
 
@@ -51,9 +48,9 @@ class PostController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['user_id'] = $request->user()->id;
-        $blogPost = Post::create($validatedData);
+        $post = Post::create($validatedData);
 
-        return redirect()->route('posts.show', ['post' => $blogPost->id]);
+        return redirect()->route('posts.show', ['post' => $post->id]);
     }
 
     /**
@@ -120,4 +117,5 @@ class PostController extends Controller
 
         return redirect()->route('posts.index');
     }
+
 }

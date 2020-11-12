@@ -19,22 +19,22 @@
             <div class="card-body">
                 <div id="post-table">
                     <table>
-                        <th width=20% class="border text-center">
-                            <h5>Título</h5>
+                        <th width=10% class="border-bottom text-center">
+                            Título
                         </th>
-                        <th width=30% class="border text-center">
-                            <h5>Conteúdo</h5>
+                        <th width=20% class="border-bottom text-center">
+                            Conteúdo
                         </th>
 
-                        <th width=15% class="border text-center">
-                            <h5>Autor</h5>
+                        <th width=10% class="border-bottom text-center">
+                            Autor
                         </th>
-                        <th width=10% class="border text-center">
-                            <h5>Data de Criação</h5>
+                        <th width=5% class="border-bottom text-center">
+                            Data
                         </th>
                         @if (Auth::check())
-                        <th width=10% class="border text-center">
-                            <h5>Ações</h5>
+                        <th width=5% class="border-bottom text-center">
+                            Ações
                         </th>
                         @endif
 
@@ -42,38 +42,59 @@
                         <tr>
                             <td class="border">
                                 <p>
-                                    <a href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a>
+                                    @if ($post->trashed())
+                                        <del><a href="{{ route('posts.show', ['post' => $post->id]) }}" class="text-muted">
+                                            {{ $post->title }}</a></del>
+                                    @else
+                                        <a href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a>
+                                    @endif
                                 </p>
                             </td>
 
                             <td class="border">
-                                {{ Str::limit( $value=$post->content, $limit=15, $end='...') }}
+                                @if ($post->trashed())
+                                        <del class="text-muted">{{ Str::limit( $value=$post->content, $limit=15, $end='...') }}</del>
+                                @else
+                                    {{ Str::limit( $value=$post->content, $limit=100, $end='...') }}
+                                @endif
                             </td>
 
-                            <td class="border text-center">
-                                {{ $post->user->name }}
+                            <td class="border">
+                                @if ($post->trashed())
+                                        <del class="text-muted">{{ $post->user->name }}</del>
+                                @else
+                                    {{ $post->user->name }}
+                                @endif
                             </td>
 
-                            <td class="border text-center">
-                                {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}
+                            <td class="border">
+                                {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }} <br>
+                                {{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
                             </td>
-
                                 <td class="border text-center">
                                     <form method="POST" class="fm-inline" action="{{ route('posts.destroy', ['post' => $post->id]) }}">
                                         @csrf
                                         @method('DELETE')
                                         @can('update', $post)
-                                            <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-success">
+                                            <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-success btn-sm">
                                                 <i class="far fa-edit"></i>
                                             </a>
                                         @endcan
-                                        @can('delete', $post)
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        @endcan
+                                        @if(!$post->trashed())
+                                            @can('delete', $post)
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            @endcan
+                                        @else
+                                            @can('restore', $post)
+                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                    <a href=""><i class="fas fa-trash-restore-alt text-white"></i></a>
+                                                </button>
+                                            @endcan
+                                        @endif
 
-                                        @cannot(['update', 'delete'], $post)
+                                        @cannot(['update', 'delete', 'restore'], $post)
                                             <p>Você não tem permissão!</p>
                                         @endcannot
                                     </form>

@@ -5,6 +5,9 @@
 @section('content_header')
     <h1 class="col-12 text-dark">{{ $post->title }}</h1>
     <p class="col-12 text-muted"> Criado {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}} por {{ $post->user->name }}</p>
+    @if ($post->trashed())
+        <p class="col-12 text-muted">Deletado em {{\Carbon\Carbon::parse($post->deleted_at)->diffForHumans()}}</p>
+    @endif
 @stop
 
 @section('content')
@@ -24,17 +27,12 @@
             </div>
     </div>
 
-    <h5>Comentários</h5>
+    <h5 class="col-12 text-dark">Comentários</h5>
 
     @forelse($post->comments as $comment)
     <div class="col-12">
         <div class="card">
-            <div class="card-body">
-                <p>{{ $comment->content }}</p>
-                <p class="text-muted">
-                    Adicionado em {{\Carbon\Carbon::parse($comment->created_at)->format('d/m/y')}}
-                </p>
-            </div>
+            <x-badge title="{{ $comment->content }}" date="{{$comment->created_at}}"></x-badge>
         </div>
     </div>
     @empty
